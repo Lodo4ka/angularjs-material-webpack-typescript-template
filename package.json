@@ -8,7 +8,7 @@
     "build": "webpack",
     "build:prod": "webpack -p"
   },
-  "author": "ardian shala",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/angular": "1.6.51",
