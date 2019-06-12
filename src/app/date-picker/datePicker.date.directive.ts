@@ -1,0 +1,39 @@
+import * as angular from 'angular';
+
+// export class DateDirective implements angular.IDirective {
+//     restrict: string;
+//     priority: number;
+//     constructor() {
+//         this.restrict = 'A';
+//         this.priority = 0;
+//     }
+//     link(
+//         $scope: angular.IScope,
+//         $element: angular.IAugmentedJQuery,
+//         $attrs: angular.IAttributes
+//     ) {
+
+//     }
+// }
+
+function DateDirective(): angular.IDirective {
+    return {
+        restrict: "A",
+        template: "",
+        scope: {
+            args: "="
+        },
+        link: (
+            $scope: angular.IScope,
+            $element: angular.IAugmentedJQuery,
+            $attrs: angular.IAttributes
+        ) => {
+            // $element.on("change", () => {
+            //     console.log('$attrs', $attrs)
+            // })
+            console.log("init")
+        }
+    };
+}
+
+export default DateDirective;
