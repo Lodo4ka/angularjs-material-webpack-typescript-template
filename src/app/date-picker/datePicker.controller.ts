@@ -1,7 +1,9 @@
 export class DatePickerCtrl {
-  constructor(private $rootScope: ng.IRootScopeService) {}
+  constructor(private $rootScope: ng.IRootScopeService) { }
 
-  $onInit() {}
+  $onInit() {
+
+  }
 
   onDateChanged = () => {
     console.log('chnged');
