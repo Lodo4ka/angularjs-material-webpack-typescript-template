@@ -1,7 +1,9 @@
 <div layout-gt-xs="row">
     <div flex-gt-xs>
         <h4>Standard date-picker</h4>
-        <md-datepicker ng-model="$ctrl.myDate" md-placeholder="Enter date">
+        <md-datepicker ng-model="$ctrl.myDateFrom" ng-change="$ctrl.onDateChanged()" md-placeholder="Enter date">
+        </md-datepicker>
+        <md-datepicker ng-model="$ctrl.myDateTo" md-placeholder="Enter date">
         </md-datepicker>
     </div>
 </div>

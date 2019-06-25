@@ -60,22 +60,23 @@ import * as angular from 'angular';
 //     }
 // }
 
-export const DateDirective = ($timeout: angular.ITimeoutService) => (<angular.IDirective>{
+export const DateDirective = ($timeout: angular.ITimeoutService) =>
+  <angular.IDirective>{
     // scope: {
-    //     // mcChange: "="
+    //     mcChange: "&"
     // },
     restrict: 'A',
     link(
-        $scope: angular.IScope,
-        $element: angular.IAugmentedJQuery,
-        $attrs: angular.IAttributes
+      $scope: angular.IScope,
+      $element: angular.IAugmentedJQuery,
+      $attrs: angular.IAttributes
     ) {
-        // $scope.$watch($attrs.todoAutofocus, (newValue, oldValue) => {
-        //     if (!newValue) {
-        //         return;
-        //     }
-        //     $timeout(() => $element[0].focus());
-        // });
-        console.log($attrs);
-    }
-});
+      // $scope.$watch($attrs.todoAutofocus, (newValue, oldValue) => {
+      //     if (!newValue) {
+      //         return;
+      //     }
+      //     $timeout(() => $element[0].focus());
+      // });
+      console.log($attrs);
+    },
+  };
