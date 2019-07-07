@@ -29,49 +29,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
     <!-- Your application bootstrap  -->
-    <script type="text/javascript">
-        /**
-         * You must include the dependency on 'ngMaterial'
-         */
-        const app = angular
-            .module('BlankApp', ['ngMaterial', 'ngMessages'])
-            .config($mdDateLocaleProvider => {
-                /**
-                 * @param date {Date}
-                 * @returns {string} string representation of the provided date
-                 */
-                $mdDateLocaleProvider.formatDate = function(date) {
-                    return date ? moment(date).format('YYYY-MM-DD') : '';
-                };
-                /**
-                 * @param dateString {string} string that can be converted to a Date
-                 * @returns {Date} JavaScript Date object created from the provided dateString
-                 */
-                $mdDateLocaleProvider.parseDate = function(dateString) {
-                    var m = moment(dateString, 'YYYY-MM-DD', true);
-                    return m.isValid() ? m.toDate() : new Date(NaN);
-                };
-            });
+    <script type="text/javascript" src="script.js">
 
-        app.controller('myCtrl', ($scope, $log, $filter, $parse) => {
-            $scope.date1 = moment().format('YYYY-MM-DD');
-            $scope.date2 = moment().format('YYYY-MM-DD');
-            $scope.cb = () => {};
-            $scope.changeInput = () => {
-                $scope.$broadcast('changeInput');
-            };
-        });
-
-        app.directive('mcDates', $parse => {
-            return {
-                templateUrl: './mc-dates.html',
-                link: ($scope, $element, $attrs) => {
-                    $scope.$on('changeInput', () => {
-                        $scope.cb();
-                    });
-                },
-            };
-        });
     </script>
 </body>
 
