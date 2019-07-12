@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css"
+    rel="stylesheet" type="text/css" />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css"
+    rel="stylesheet" type="text/css" />
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+  <script
+    src="http:////cdnjs.cloudflare.com/ajax/libs/moment.js/2.1.0/moment.min.js"></script>
+  <script
+    src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.0.3/angular.min.js"></script>
+  <script src="app.js"></script>
+</head>
+
+<body class="container-fluid">
+
+  <div class="row offset1" ng-controller="myCtrl">
+    <div class="span5">
+      <p class="lead">Live updates</p>
+      <table class="table table-striped table-bordered table-condensed row">
+        <thead>
+          <td class="span2">Format</td>
+          <td class="span2">Value</td>
+        </thead>
+        <tbody>
+          <tr ng-repeat=" dateFormat in dateFormats">
+            <td><label for="id{{$index}"> {{dateFormat}} </label></td>
+                <td><input id=" id{{$index}}" class="datepicker" type="text"
+                ng-model="mainScope.myDate" mo-date-input="{{dateFormat}}" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span5">
+      <p class="lead">OnChange updates</p>
+      <table class="table table-striped table-bordered table-condensed">
+        <thead>
+          <td class="span2">Format</td>
+          <td class="span2">Value</td>
+        </thead>
+        <tbody>
+          <tr ng-repeat=" dateFormat in dateFormats">
+            <td><label> {{dateFormat}} </label></td>
+            <td><input class="datepicker" type="text"
+                ng-init="localScopeDate = mainScope.myDate"
+                ng-model="localScopeDate" mo-change-proxy="mainScope.myDate"
+                mo-date-input="{{dateFormat}}" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>
