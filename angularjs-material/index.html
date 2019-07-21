@@ -1,37 +1,47 @@
 <html lang="en">
-
-<head>
+  <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Angular Material style sheet -->
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css" />
-</head>
+    <!-- <link
+      rel="stylesheet"
+      href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css"
+    /> -->
+    <link rel="stylesheet" href="./angular-material.min.css" />
+  </head>
 
-<body ng-app="BlankApp" ng-cloak>
+  <body ng-app="BlankApp" ng-cloak>
     <div ng-controller="myCtrl">
-        <mc-dates date-from="‘$ctrl.date1’" date-to="‘$ctrl.date2’" mcchange="cb()"></mc-dates>
-        <div>
-            <md-input-container>
-                <label>Дата 1</label>
-                <input ng-change="changeInput()" ng-model="date1" />
-            </md-input-container>
-            <md-input-container>
-                <label>Дата 2</label>
-                <input ng-change="changeInput()" ng-model="date2" />
-            </md-input-container>
-        </div>
+      <mc-dates
+        date-from="‘$ctrl.date1’"
+        date-to="‘$ctrl.date2’"
+        mc-change="cb()"
+      ></mc-dates>
+      <div>
+        <md-input-container>
+          <label>Дата 1</label>
+          <input ng-change="changeInput()" ng-model="date1" />
+        </md-input-container>
+        <md-input-container>
+          <label>Дата 2</label>
+          <input ng-change="changeInput()" ng-model="date2" />
+        </md-input-container>
+      </div>
     </div>
     <!-- Angular Material requires Angular.js Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-animate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-aria.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-messages.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script> -->
+    <script src="./angular.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-animate.min.js"></script> -->
+    <script src="./angular-animate.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-aria.min.js"></script> -->
+    <script src="./angular-aria.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-messages.min.js"></script> -->
+    <script src="./angular-messages.min.js"></script>
     <!-- Angular Material Library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script> -->
+    <script src="./angular-material.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script> -->
+    <script src="./moment.min.js"></script>
     <!-- Your application bootstrap  -->
-    <script type="text/javascript" src="script.js">
-
-    </script>
-</body>
-
+    <script type="text/javascript" src="script.js"></script>
+  </body>
 </html>

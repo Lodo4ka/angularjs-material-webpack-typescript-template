@@ -4,7 +4,7 @@
 const app = angular
   .module('BlankApp', ['ngMaterial', 'ngMessages'])
   .config($mdDateLocaleProvider => {
-    moment.lang("ru");
+    moment.locale("ru");
     /**
      * @param date {Date}
      * @returns {string} string representation of the provided date
@@ -72,7 +72,7 @@ app.filter('dateFormatter', function () {
 app.controller('myCtrl', ($scope, $log, $filter, $parse) => {
   $scope.date1 = moment().format('YYYY-MM-DD');
   $scope.date2 = moment().format('YYYY-MM-DD');
-  moment.lang("ru");
+  moment.locale("ru");
   // $scope.date1 = new Date()
   // $scope.date2 = new Date()
   // $scope.date1 = $filter("dateFormatter")($scope.date1, 'YYYY-MM-DD')
