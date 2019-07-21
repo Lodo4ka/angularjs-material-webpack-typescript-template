@@ -48,17 +48,14 @@ const app = angular
     // You can also set when your calendar begins and ends.
     // $mdDateLocaleProvider.firstRenderableDate = new Date(1776, 6, 4);
     // $mdDateLocaleProvider.lastRenderableDate = new Date(2012, 11, 21);
-
   });
 
-
-app.filter('dateFormatter', function () {
-  return function (date, format) {
+app.filter('dateFormatter', function() {
+  return function(date, format) {
     if (!moment) {
       console.log('Error: momentJS is not loaded as a global');
       return '!momentJS';
     }
-    moment.locale('ru'); //needed if you want to change the locale globally
     if (!format) {
       return moment(date).fromNow();
     } else {
@@ -66,12 +63,13 @@ app.filter('dateFormatter', function () {
       // if(result === "Invalid date") return moment().format('YYYY-MM-DD');
       return result; //in absence of format parameter, return the relative time from the given date
     }
-  }
+  };
 });
 
 app.controller('myCtrl', ($scope, $log, $filter, $parse) => {
   $scope.date1 = moment().format('YYYY-MM-DD');
   $scope.date2 = moment().format('YYYY-MM-DD');
+  $scope.dateFormat = 'YYYY-MM-DD';
   moment.locale("ru");
   // $scope.date1 = new Date()
   // $scope.date2 = new Date()
@@ -89,9 +87,14 @@ app.controller('myCtrl', ($scope, $log, $filter, $parse) => {
     // $scope.date1 = moment($scope.date1).format('YYYY-MM-DD') === "Invalid date" ? ;
     $scope.date2 = moment($scope.date2).format('YYYY-MM-DD');
   };
-  $scope.changeInput = () => {
-    $scope.$broadcast('changeInput');
-  };
+  $scope.changeInput = function ($event) {
+    // const element = angular.element(this).val();
+    this.text();
+    // angular.element('#username').val()
+    console.log(this.text());
+    // console.log(element);
+    // console.log(this);
+  }
 });
 
 app.directive('mcDates', $parse => {
@@ -105,6 +108,36 @@ app.directive('mcDates', $parse => {
   };
 });
 
+app.directive('moDateInput', function($window) {
+  return {
+    require: '^ngModel',
+    restrict: 'A',
+    link: function(scope, elm, attrs, ctrl) {
+      var moment = $window.moment;
+      var dateFormat = attrs.moMediumDate;
+      attrs.$observe('moDateInput', function(newValue) {
+        if (dateFormat == newValue || !ctrl.$modelValue) return;
+        dateFormat = newValue;
+        ctrl.$modelValue = new Date(ctrl.$setViewValue);
+      });
+
+      ctrl.$formatters.unshift(function(modelValue) {
+        scope = scope;
+        if (!dateFormat || !modelValue) return '';
+        var retVal = moment(modelValue).format(dateFormat);
+        return retVal;
+      });
+
+      ctrl.$parsers.unshift(function(viewValue) {
+        scope = scope;
+        var date = moment(viewValue, dateFormat);
+        return date && date.isValid() && date.year() > 1950
+          ? date.toDate()
+          : '';
+      });
+    },
+  };
+});
 
 // app.directive('mdDatepicker', function ($parse) {
 //     return {
