@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.1/js/bootstrap-datepicker.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/`twitter-bootstrap/3.3.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.1/css/datepicker3.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+    />
+
+    <script src="script.js"></script>
+  </head>
+
+  <body ng-controller="controller">
+    <div class="container">
+      <h1>Bootstrap date picker directive</h1>
+
+      <h4 class="form-group">
+        <span class="label label-primary">{{
+          moment(date).format('MM/DD/YYYY')
+        }}</span>
+        <span class="label label-success">{{
+          moment(date).format('h:mm:ss A')
+        }}</span>
+      </h4>
+
+      <div class="form-group">
+        <label>Pick from a textbox</label>
+        <input
+          type="text"
+          class="form-control"
+          ng-model="date"
+          my-date-picker
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Pick with a button</label>
+        <div>
+          <button class="btn" ng-model="date" my-date-picker>
+            <i class="fa fa-calendar"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Pick with link</label>
+        <div>
+          <a href="" ng-model="date" my-date-picker>Link</a>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Time component operates independently</label>
+        <div>
+          <button class="btn" ng-click="addFifteen()">Add 15 minutes</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Always remains a JavaScript Date object</label>
+        <div>{{ date }}</div>
+      </div>
+    </div>
+  </body>
+</html>

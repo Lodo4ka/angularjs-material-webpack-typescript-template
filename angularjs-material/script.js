@@ -128,6 +128,21 @@ app.controller('myCtrl', ($scope, $log, $filter, $parse) => {
   };
 });
 
+app.directive('datepicker', function() {
+  return {
+    require: 'ngModel',
+    link: function(scope, el, attr, ngModel) {
+      // $(el).datepicker({
+        // onSelect: function(dateText) {
+          scope.$apply(function() {
+            ngModel.$setViewValue(el.val());
+          });
+        // }
+      // });
+    }
+  };
+});
+
 app.directive('mcDates', $parse => {
   return {
     templateUrl: './mc-dates.html',

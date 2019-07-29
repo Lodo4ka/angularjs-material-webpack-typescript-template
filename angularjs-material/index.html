@@ -27,7 +27,7 @@
         </md-input-container>
       </div>
     </div>
-    <hr>
+    <hr />
 
     <div ng-controller="MainCtrl" ng-form="form1">
       <div class="header">
@@ -36,12 +36,24 @@
       </div>
 
       Without decimal places
-      <input type='text' sg-number-input ng-model="numericValue" />
+      <input
+        type="text"
+        sg-number-input
+        ng-model="numericValue"
+        datepicker=""
+      />
       <br />
 
       With 2 decimal places
-      <input type='text' sg-number-input fraction-size="2" ng-model="numericValue" />
+      <input
+        type="text"
+        sg-number-input
+        fraction-size="2"
+        datepicker=""
+        ng-model="numericValue"
+      />
     </div>
+
     <!-- Angular Material requires Angular.js Libraries -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script> -->
     <script src="./angular.min.js"></script>
