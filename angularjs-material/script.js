@@ -62,7 +62,6 @@ app.filter('dateFormatter', function() {
       return '!momentJS';
     }
     if (!format) {
-      debugger;
       return moment(date).fromNow();
     } else {
       const result = moment(date).format(format);
@@ -88,6 +87,7 @@ app.controller('myCtrl', ($scope, $log, $filter, $parse) => {
   // $scope.date2 = $filter('date')($scope.date2, moment().format('YYYY-MM-DD'));
   // $scope.date1 = new Date();
   // $scope.date2 = new Date();
+
   $scope.cb = () => {
     $log.log('Updated Date1: ', $scope.date1);
     $log.log('Updated Date2: ', $scope.date2);
@@ -96,6 +96,7 @@ app.controller('myCtrl', ($scope, $log, $filter, $parse) => {
     // $scope.date1 = moment($scope.date1).format('YYYY-MM-DD') === "Invalid date" ? ;
     // $scope.date2 = moment($scope.date2).format('YYYY-MM-DD');
   };
+
   $scope.changeInput = function($event) {
     // const element = angular.element(this).val();
     // this.text();
@@ -106,6 +107,7 @@ app.controller('myCtrl', ($scope, $log, $filter, $parse) => {
     // if (!moment.isValid(this.date1) && !moment.isValid(this.date2)) {
     // const date1 = moment().format('YYYY-MM-DD');
     // const date2 = moment().format('YYYY-MM-DD');
+
     const date1 = moment(this.date1, 'YYYY-MM-DD', true);
     const date2 = moment(this.date2, 'YYYY-MM-DD', true);
     if (!date1.isValid() || !date2.isValid()) {
@@ -125,21 +127,38 @@ app.controller('myCtrl', ($scope, $log, $filter, $parse) => {
     //   return m.isValid() ? m.toDate() : new Date(NaN);
     // };
     // }
+
   };
 });
 
-app.directive('datepicker', function() {
+app.directive('moDateInput', function($window) {
   return {
-    require: 'ngModel',
-    link: function(scope, el, attr, ngModel) {
-      // $(el).datepicker({
-        // onSelect: function(dateText) {
-          scope.$apply(function() {
-            ngModel.$setViewValue(el.val());
-          });
-        // }
-      // });
-    }
+    require: '^ngModel',
+    restrict: 'A',
+    link: function(scope, elm, attrs, ctrl) {
+      var moment = $window.moment;
+      var dateFormat = attrs.moMediumDate;
+      attrs.$observe('moDateInput', function(newValue) {
+        if (dateFormat == newValue || !ctrl.$modelValue) return;
+        dateFormat = newValue;
+        ctrl.$modelValue = new Date(ctrl.$setViewValue);
+      });
+
+      ctrl.$formatters.unshift(function(modelValue) {
+        scope = scope;
+        if (!dateFormat || !modelValue) return '';
+        var retVal = moment(modelValue).format(dateFormat);
+        return retVal;
+      });
+
+      ctrl.$parsers.unshift(function(viewValue) {
+        scope = scope;
+        var date = moment(viewValue, dateFormat);
+        return date && date.isValid() && date.year() > 1950
+          ? date.toDate()
+          : '';
+      });
+    },
   };
 });
 
@@ -186,7 +205,12 @@ app.directive('mcDates', $parse => {
 // });
 
 app.controller('MainCtrl', function($scope) {
-  $scope.numericValue = 12345678;
+  // $scope.numericValue = 12345678;
+  $scope.mainScope = {};
+  // $scope.mainScope.myDate = moment().toDate();
+  $scope.mainScope.myDate = new Date()
+  $scope.dateFormats = ['DD-MMM-YYYY', 'MM-DD-YYYY', 'MM-DD-YY', 'DD-MM-YY'];
+  $scope.dates = [new Date(), new Date(), new Date(), new Date()];
 });
 
 // app.directive('editor', function() {

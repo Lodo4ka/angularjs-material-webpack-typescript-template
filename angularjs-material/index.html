@@ -27,21 +27,17 @@
         </md-input-container>
       </div>
     </div>
+
     <hr />
 
-    <div ng-controller="MainCtrl" ng-form="form1">
+    <!-- <div ng-controller="MainCtrl" ng-form="form1">
       <div class="header">
         AngularJs directive for automatic formatting of numeric values in input
-        fields.
+        fields.©
       </div>
 
       Without decimal places
-      <input
-        type="text"
-        sg-number-input
-        ng-model="numericValue"
-        datepicker=""
-      />
+      <input type="text" sg-number-input ng-model="numericValue" />
       <br />
 
       With 2 decimal places
@@ -49,9 +45,20 @@
         type="text"
         sg-number-input
         fraction-size="2"
-        datepicker=""
         ng-model="numericValue"
       />
+    </div> -->
+
+    <div ng-controller="MainCtrl">
+      <div ng-repeat="dateFormat in dateFormats">
+        <input
+          id=" id{{ $index }}"
+          class="datepicker"
+          type="text"
+          ng-model="mainScope.myDate"
+          mo-date-input="{{ dateFormat }}"
+        />
+      </div>
     </div>
 
     <!-- Angular Material requires Angular.js Libraries -->
