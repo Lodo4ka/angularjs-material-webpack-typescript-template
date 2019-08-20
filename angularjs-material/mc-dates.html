@@ -1,2 +1,27 @@
-<md-datepicker ng-model="date1" ng-change="cb()" md-placeholder="Enter date"></md-datepicker>
-<md-datepicker ng-model="date2" ng-change="cb()"  md-placeholder="Enter date"></md-datepicker>
+<div style="max-width: 400px">
+  <md-datepicker
+    ng-model="date1"
+    ng-change="cb()"
+    md-placeholder="Enter date"
+    md-date-filter="minFilter"
+  >
+  </md-datepicker>
+  <md-datepicker
+    ng-model="date2"
+    ng-change="cb()"
+    md-placeholder="Enter date"
+    md-date-filter="maxFilter"
+  ></md-datepicker>
+  <div
+    style="max-width: 350px"
+    flex-offset="5"
+    layout="row"
+    layout-align="space-between center"
+  >
+    <div ng-click="yesterday" class="md-caption">Вчера</div>
+    <div ng-click="today" class="md-caption">Сегодня</div>
+    <div ng-click="twoWeeks" class="md-caption">2 недели</div>
+    <div ng-click="month" class="md-caption">Месяц</div>
+    <div ng-click="all" class="md-caption">Все</div>
+  </div>
+</div>

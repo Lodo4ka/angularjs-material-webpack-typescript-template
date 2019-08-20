@@ -7,6 +7,7 @@ import { routes } from './app.routes';
 import 'angular-material/angular-material.scss';
 import 'hammerjs';
 import * as hmTouchEvents from 'angular-hammer';
+import * as moment from "moment";
 
 import './style.scss';
 
@@ -30,7 +31,8 @@ angular.module('app').config(routes);
 
 angular.module('app').config([
   '$mdThemingProvider',
-  function($mdThemingProvider) {
+  '$mdDateLocaleProvider',
+  function($mdThemingProvider, $mdDateLocaleProvider) {
     $mdThemingProvider
       .theme('blue')
       .primaryPalette('blue')
@@ -42,6 +44,16 @@ angular.module('app').config([
       .accentPalette('red');
 
     $mdThemingProvider.alwaysWatchTheme(true);
+
+    $mdDateLocaleProvider.formatDate = function (date:Date) {
+      return moment(date).format('YYYY-MM-DD')
+    }
+
+    $mdDateLocaleProvider.parseDate = function (dataeString:Date) {
+      const m = moment(dataeString, 'YYYY-MM-DD');
+      // return m.isValid() ? m.toDate().format('YYYY-MM-DD h:mm:ss a') : new Date(NaN).toISOString();
+      return m.isValid() ? m.format('YYYY-MM-DD h:mm:ss a').toString() : new Date(NaN).toISOString()
+    }
   },
 ]);
 
