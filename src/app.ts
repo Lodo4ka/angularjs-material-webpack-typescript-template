@@ -14,7 +14,7 @@ import './style.scss';
 import mainModule from './app/main/main.module';
 import settingsModule from './app/settings/settings.module';
 import homeModule from './app/home/home.module';
-import datePickerModule from './app/date-picker/datePicker.module';
+// import datePickerModule from './app/date-picker/datePicker.module';
 
 angular.module('app', [
   uiRouter.default,
@@ -25,7 +25,7 @@ angular.module('app', [
   mainModule,
   settingsModule,
   homeModule,
-  datePickerModule,
+  // datePickerModule,
 ]);
 angular.module('app').config(routes);
 
@@ -42,17 +42,20 @@ angular.module('app').config([
       .theme('green')
       .primaryPalette('teal')
       .accentPalette('red');
-
+    moment.locale("ru");
     $mdThemingProvider.alwaysWatchTheme(true);
 
     $mdDateLocaleProvider.formatDate = function (date:Date) {
       return moment(date).format('YYYY-MM-DD')
-    }
+    };
 
     $mdDateLocaleProvider.parseDate = function (dataeString:Date) {
       const m = moment(dataeString, 'YYYY-MM-DD');
-      // return m.isValid() ? m.toDate().format('YYYY-MM-DD h:mm:ss a') : new Date(NaN).toISOString();
       return m.isValid() ? m.format('YYYY-MM-DD h:mm:ss a').toString() : new Date(NaN).toISOString()
+    };
+
+    $mdDateLocaleProvider.isDateComplete = function (dateString) {
+      return new Date(dateString).toISOString()
     }
   },
 ]);

@@ -20,24 +20,15 @@ const app = angular
     $mdDateLocaleProvider.parseDate = function(dateString) {
       const m = moment(dateString, 'YYYY-MM-DD', true);
       return m.isValid() ? m.toDate().format('YYYY-MM-DD h:mm:ss a') : new Date(NaN).toISOString();
-      // return new Date(dateString).toISOString()
     };
-
-    // $mdDateLocaleProvider.isDateComplete = function(dateString) {
-    //   dateString = dateString.trim();
-
-    //   // Look for two chunks of content (either numbers or text) separated by delimiters.
-    //   const re = /^(([a-zA-Z]{3,}|[0-9]{1,4})([ .,]+|[/-]))([a-zA-Z]{3,}|[0-9]{1,4})/;
-    //   return re.test(dateString);
-    // };
     $mdDateLocaleProvider.isDateComplete = function (dateString) {
       return new Date(dateString).toISOString()
     }
   });
 
 app.controller('myCtrl', ($scope, $log, $filter, $parse) => {
-  $scope.date1 = new Date().toISOString()
-  $scope.date2 = new Date().toISOString()
+  $scope.date1 = new Date().toISOString();
+  $scope.date2 = new Date().toISOString();
 
   function isIsoDate(str) {
     if (!/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(str)) return false;
@@ -47,8 +38,8 @@ app.controller('myCtrl', ($scope, $log, $filter, $parse) => {
 
   $scope.cb = function () {
     console.log('this', this);
-    $scope.date1 = isIsoDate($scope.date1) ? $scope.date1 : new Date($scope.date1).toISOString()
-    $scope.date2 = isIsoDate($scope.date2) ? $scope.date2 : new Date($scope.date2).toISOString()
+    $scope.date1 = isIsoDate($scope.date1) ? $scope.date1 : new Date($scope.date1).toISOString();
+    $scope.date2 = isIsoDate($scope.date2) ? $scope.date2 : new Date($scope.date2).toISOString();
   }
 });
 
